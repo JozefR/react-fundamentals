@@ -20,16 +20,18 @@
 
 <html>
   <body>
-    <div id="root">
-  
-    </div>
+
+    <script type="module">
+      var rootElement = document.createElement('div')
+      rootElement.setAttribute('id', 'root')
+      document.body.append(rootElement);
+
+      var root = document.getElementById('root')
+      var divElement = document.createElement('div');
+      divElement.textContent = 'Hello World'
+      divElement.className = 'container'
+      root.append(divElement);
+    </script>
   </body>
 </html>
 
-<script type="module">
-  var root = document.getElementById('root')
-  var divElement = document.createElement('div');
-  divElement.textContent = 'Hello World'
-  divElement.className = 'container'
-  root.append(divElement);
-</script>
