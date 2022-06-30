@@ -15,6 +15,10 @@
       return <div className="message">{children}</div>
     }
 
+    function Message({children}) {
+      return <div className="message">{children}</div>
+    }
+
     const element = (
       <div className="container">
         {message({children: 'Hello World'})}
@@ -22,7 +26,58 @@
       </div>
     )
 
+    const element2 = (
+      <div className="container">
+        {React.createElement(message, {children: 'Hello World'})}
+        {React.createElement(message, {children: 'Goodbye World'})}
+      </div>
+    )
+
+    const element3 = (
+      <div className="container">
+        <Message>Bla</Message>
+        <Message>Blu</Message>
+      </div>
+    )
+
+    function Message1({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+
+    const element4 = (
+      <div className="container">
+        <Message1 greeting="Hello" subject="World" />
+        <Message1 greeting="Goodbye" subject="World" />
+      </div>
+    )
+
+    function FavoriteNumber({favoriteNumber}) {
+      return <div>My favorite number is: {favoriteNumber}</div>
+    }
+
+    const PropTypes = {
+      number(props, propName, componentName) {
+        if (typeof props[propName] !== 'number') {
+          return new Error('Some useful error message here')
+        }
+      },
+    }
+
+    FavoriteNumber.propTypes = {
+      favoriteNumber: PropTypes.number,
+    }
+
+    const element5 = (
+      <div className="container">
+        <FavoriteNumber favoriteNumber="not a number" />
+      </div>
+    )
+
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.createRoot(document.getElementById('root')).render(element)
+    ReactDOM.createRoot(document.getElementById('root')).render(element3)
   </script>
 </body>
